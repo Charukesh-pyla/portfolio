@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Briefcase, Heart, Cpu } from "lucide-react";
+import { MapPin, Briefcase, Heart, Cpu, GraduationCap } from "lucide-react";
 
 export default function About() {
   const containerVariants = {
@@ -88,13 +88,22 @@ export default function About() {
               </div>
             </div>
 
+            {/* Studies */}
+            <div className="flex gap-4 p-4 rounded-xl bg-card/50 border border-border/60">
+              <GraduationCap className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-secondary-text/60">Studies</h4>
+                <p className="text-sm font-semibold text-white">Undergraduate Engineering</p>
+              </div>
+            </div>
+
             {/* Interests */}
-            <div className="flex gap-4 p-4 rounded-xl bg-card/50 border border-border/60 sm:col-span-2">
+            <div className="flex gap-4 p-4 rounded-xl bg-card/50 border border-border/60">
               <Heart className="h-5 w-5 text-accent shrink-0 mt-0.5" />
               <div className="space-y-1">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-secondary-text/60">Interests</h4>
-                <p className="text-sm font-semibold text-white">
-                  Multi-Agent Systems, Cognitive Architectures, Graphic Design, Web Development
+                <p className="text-sm font-semibold text-white text-wrap">
+                  Multi-Agent Systems, Graphic Design, Web Dev
                 </p>
               </div>
             </div>

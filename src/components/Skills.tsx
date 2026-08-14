@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Brain, Code, Server, Database, Settings, Terminal } from "lucide-react";
+import TechBadge from "@/components/ui/TechBadge";
 
 interface SkillCategory {
   title: string;
@@ -19,9 +20,9 @@ export default function Skills() {
         "Machine Learning",
         "Deep Learning",
         "Agentic AI",
-        "Large Language Models (LLMs)",
-        "Explainable AI (XAI)",
-        "Natural Language Processing (NLP)",
+        "LLMs",
+        "Explainable AI",
+        "NLP",
         "Prompt Engineering",
         "Transformers",
         "Scikit-learn",
@@ -35,22 +36,22 @@ export default function Skills() {
     {
       title: "Backend & Orchestration",
       icon: <Server className="h-5 w-5 text-accent" />,
-      skills: ["FastAPI", "REST APIs", "LangChain", "LangGraph", "Gemini API"],
+      skills: ["FastAPI", "REST APIs", "LangChain", "LangGraph", "Gemini"],
     },
     {
       title: "Frontend Development",
       icon: <Code className="h-5 w-5 text-accent" />,
-      skills: ["React", "Next.js", "Tailwind CSS", "HTML5 / CSS3"],
+      skills: ["React", "Next.js", "Tailwind CSS"],
     },
     {
       title: "Databases & Vector Storage",
       icon: <Database className="h-5 w-5 text-accent" />,
-      skills: ["MongoDB", "FAISS (Vector DB)", "PostgreSQL"],
+      skills: ["MongoDB", "FAISS", "PostgreSQL", "Redis"],
     },
     {
       title: "DevOps & Tools",
       icon: <Settings className="h-5 w-5 text-accent" />,
-      skills: ["Docker", "Git", "GitHub Actions", "VS Code"],
+      skills: ["Docker", "Git", "Kubernetes"],
     },
   ];
 
@@ -112,12 +113,7 @@ export default function Skills() {
               {/* Badges Container */}
               <div className="flex flex-wrap gap-2 mt-1">
                 {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-2.5 py-1 text-xs font-medium rounded-full bg-background border border-border/80 text-secondary-text hover:text-white hover:border-accent/40 transition-colors duration-200"
-                  >
-                    {skill}
-                  </span>
+                  <TechBadge key={skill} label={skill} variant="card" />
                 ))}
               </div>
             </motion.div>

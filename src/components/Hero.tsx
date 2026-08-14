@@ -2,61 +2,48 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, FileText } from "lucide-react";
+import { MapPin, Briefcase, Heart, GraduationCap, Send, FileText } from "lucide-react";
 import { Github, Linkedin } from "@/components/Icons";
+import Image from "next/image";
 import LiquidEther from "@/components/ui/LiquidEther";
+import TechBadge from "@/components/ui/TechBadge";
 
+/* ─── Main Hero ─────────────────────────────────────────────── */
 export default function Hero() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.15 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 12 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as const, // expo-like easing for premium feel
-      },
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
     },
   };
 
   const marqueeSkills = [
-    "Python", "FastAPI", "React", "LangGraph", "LangChain", "Gemini", 
-    "Machine Learning", "Deep Learning", "LLMs", "NLP", "Prompt Engineering", 
-    "Agentic AI", "Explainable AI", "Docker", "MongoDB", "FAISS", "Git", "SQL"
+    "Python", "FastAPI", "React", "LangGraph", "LangChain", "Gemini",
+    "Machine Learning", "Deep Learning", "LLMs", "NLP", "Prompt Engineering",
+    "Agentic AI", "Explainable AI", "Docker", "MongoDB", "FAISS", "Git", "SQL",
   ];
 
-  const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const element = document.getElementById("projects");
-    if (element) {
-      const offset = 100;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
+  const metaCards = [
+    { icon: MapPin, label: "Location", value: "India" },
+    { icon: Briefcase, label: "Current Status", value: "Student & AI Developer" },
+    { icon: GraduationCap, label: "Studies", value: "Undergraduate Engineering" },
+    { icon: Heart, label: "Interests", value: "Multi-Agent Systems, Graphic Design" },
+  ];
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Background LiquidEther with low opacity */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+      {/* Background LiquidEther — very subtle */}
+      <div className="absolute inset-0 z-0 opacity-15 pointer-events-none">
         <LiquidEther
           colors={["#09090B", "#18181B", "#3F3F46", "#F97316"]}
           mouseForce={15}
@@ -76,121 +63,155 @@ export default function Hero() {
         />
       </div>
 
-      {/* Hero content wrapper */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-20 pb-32 text-center">
+      {/* ── Main Content ── */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-28 pb-36">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-6"
+          className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center"
         >
-          {/* Subtitle Badge */}
-          <motion.div variants={itemVariants} className="inline-flex items-center">
-            <span className="px-3 py-1 rounded-full text-xs font-mono text-accent bg-accent/5 border border-accent/15 tracking-widest uppercase">
-              Available for Opportunities
-            </span>
-          </motion.div>
+          {/* ════════ LEFT COLUMN ════════ */}
+          <div className="md:col-span-5 space-y-7">
+            {/* Profile row: Avatar + Name + Role */}
+            <motion.div variants={itemVariants} className="flex items-center gap-4">
+              <div className="relative h-16 w-16 shrink-0 rounded-xl overflow-hidden border border-border bg-card">
+                <Image
+                  src="/avatar.png"
+                  alt="Charukesh Pyla"
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="space-y-0.5">
+                <h1 className="text-2xl font-extrabold tracking-tight text-white leading-tight">
+                  Charukesh Pyla
+                </h1>
+                <p className="text-sm font-mono text-accent">
+                  AI Engineer &amp; Full Stack Developer
+                </p>
+              </div>
+            </motion.div>
 
-          {/* Main Heading */}
-          <motion.h1 
-            variants={itemVariants} 
-            className="text-5xl md:text-8xl font-extrabold tracking-tight text-white leading-[1.1] text-gradient"
-          >
-            I build intelligent <br />
-            systems for the web.
-          </motion.h1>
+            {/* Bio with inline tech badges */}
+            <motion.p
+              variants={itemVariants}
+              className="text-sm md:text-base text-secondary-text leading-[1.9] font-sans"
+            >
+              I build intelligent systems focused on{" "}
+              <TechBadge label="Machine Learning" variant="inline" />
+              <TechBadge label="Agentic AI" variant="inline" />
+              <TechBadge label="LLMs" variant="inline" />{" "}
+              and{" "}
+              <TechBadge label="Deep Learning" variant="inline" />
+              . I love solving real-world problems through AI — exploring how intelligent systems learn, reason, and make decisions. My stack includes{" "}
+              <TechBadge label="Python" variant="inline" />
+              <TechBadge label="FastAPI" variant="inline" />
+              <TechBadge label="LangGraph" variant="inline" />
+              <TechBadge label="FAISS" variant="inline" />{" "}
+              and{" "}
+              <TechBadge label="React" variant="inline" />.
+            </motion.p>
 
-          {/* Description */}
-          <motion.p 
-            variants={itemVariants} 
-            className="text-base md:text-xl text-secondary-text max-w-2xl mx-auto leading-relaxed font-sans"
-          >
-            I am a <span className="text-white font-medium">Full Stack & AI Engineer</span> specializing in designing and deploying production-grade LLM workflows, custom agent architectures, and elegant user interfaces.
-          </motion.p>
+            {/* CTA Buttons + Social icons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-3"
+            >
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-card border border-border hover:border-accent/40 text-secondary-text hover:text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-300"
+              >
+                <FileText className="h-4 w-4" />
+                Resume / CV
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-300 shadow-lg shadow-accent/10"
+              >
+                <Send className="h-3.5 w-3.5" />
+                Get in touch
+              </a>
 
-          {/* CTA Buttons */}
-          <motion.div 
-            variants={itemVariants} 
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-          >
-            <a
-              href="#projects"
-              onClick={handleScrollToProjects}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold text-sm px-6 py-3.5 rounded-full transition-all duration-300 shadow-lg shadow-accent/10"
-            >
-              View Projects
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-card border border-border hover:border-accent/40 text-secondary-text hover:text-white font-semibold text-sm px-6 py-3.5 rounded-full transition-all duration-300"
-            >
-              <FileText className="h-4 w-4" />
-              Resume
-            </a>
-          </motion.div>
+              {/* Social icons */}
+              <div className="flex items-center gap-4 pl-2 border-l border-border/40">
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary-text hover:text-accent transition-colors duration-200"
+                  aria-label="GitHub"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary-text hover:text-accent transition-colors duration-200"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
+            </motion.div>
 
-          {/* Social icons */}
-          <motion.div 
-            variants={itemVariants} 
-            className="flex items-center justify-center gap-6 pt-8 text-secondary-text"
+            {/* Availability badge */}
+            <motion.div variants={itemVariants}>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono text-accent bg-accent/5 border border-accent/15 tracking-wider">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                Available for opportunities
+              </span>
+            </motion.div>
+          </div>
+
+          {/* ════════ RIGHT COLUMN — Premium 2×2 Card Grid ════════ */}
+          <motion.div
+            variants={itemVariants}
+            className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors duration-200"
-              aria-label="GitHub"
-            >
-              <Github className="h-6 w-6" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors duration-200"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
+            {metaCards.map(({ icon: Icon, label, value }) => (
+              <div
+                key={label}
+                className="flex gap-4 p-5 rounded-xl bg-card/50 border border-border/60 hover:border-accent/30 hover:bg-card transition-all duration-300"
+              >
+                <Icon className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-secondary-text/60">
+                    {label}
+                  </h4>
+                  <p className="text-sm font-semibold text-white leading-snug">{value}</p>
+                </div>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Skills Marquee Ticker */}
+      {/* ── Skills Marquee Ticker ── */}
       <div className="absolute bottom-16 left-0 right-0 w-full overflow-hidden border-y border-border/30 bg-[#111113]/25 py-3.5 backdrop-blur-[2px] z-10">
         <motion.div
           className="flex whitespace-nowrap gap-12 w-max"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            ease: "linear",
-            duration: 30,
-            repeat: Infinity,
-          }}
+          transition={{ ease: "linear", duration: 30, repeat: Infinity }}
         >
-          <div className="flex gap-12 text-secondary-text/50 font-mono text-xs md:text-sm tracking-widest uppercase items-center">
-            {marqueeSkills.map((skill, idx) => (
-              <span key={idx} className="flex items-center gap-3">
-                <span>{skill}</span>
-                <span className="text-accent/60 text-lg font-bold">•</span>
-              </span>
-            ))}
-          </div>
-          <div className="flex gap-12 text-secondary-text/50 font-mono text-xs md:text-sm tracking-widest uppercase items-center">
-            {marqueeSkills.map((skill, idx) => (
-              <span key={`dup-${idx}`} className="flex items-center gap-3">
-                <span>{skill}</span>
-                <span className="text-accent/60 text-lg font-bold">•</span>
-              </span>
-            ))}
-          </div>
+          {[...marqueeSkills, ...marqueeSkills].map((skill, idx) => (
+            <span
+              key={idx}
+              className="flex items-center gap-3 text-secondary-text/50 font-mono text-xs md:text-sm tracking-widest uppercase"
+            >
+              <span>{skill}</span>
+              <span className="text-accent/60 text-lg font-bold">•</span>
+            </span>
+          ))}
         </motion.div>
       </div>
-      
-      {/* Subtle bottom fade to black to blend with subsequent section */}
+
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
