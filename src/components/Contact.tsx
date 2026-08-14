@@ -60,14 +60,14 @@ export default function Contact() {
           {/* Social details list */}
           <motion.div variants={itemVariants} className="space-y-4 pt-4 border-t border-border/40">
             <a
-              href="mailto:contact@example.com"
+              href="mailto:charukeshpyla247@gmail.com"
               className="flex items-center gap-3 text-secondary-text hover:text-white transition-colors duration-200"
             >
               <Mail className="h-4.5 w-4.5 text-accent" />
-              <span className="text-sm font-semibold">contact@example.com</span>
+              <span className="text-sm font-semibold">charukeshpyla247@gmail.com</span>
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/charukesh-pyla-937aa02b7/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-secondary-text hover:text-white transition-colors duration-200"
@@ -76,7 +76,7 @@ export default function Contact() {
               <span className="text-sm font-semibold">LinkedIn Profile</span>
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/Charukesh-pyla"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-secondary-text hover:text-white transition-colors duration-200"
